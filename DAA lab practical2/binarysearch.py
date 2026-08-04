@@ -1,0 +1,46 @@
+import time
+
+n = int(input("Enter number of elements: "))
+arr = []
+
+print("Enter elements:")
+for i in range(n):
+    arr.append(int(input()))
+
+arr.sort()
+
+key = int(input("Enter element to search: "))
+
+start = time.perf_counter()
+
+low = 0
+high = n - 1
+found = False
+
+while low <= high:
+    mid = (low + high) // 2
+
+    if arr[mid] == key:
+        found = True
+        position = mid
+        break
+    elif arr[mid] < key:
+        low = mid + 1
+    else:
+        high = mid - 1
+
+end = time.perf_counter()
+
+print("Sorted array:", arr)
+
+if found:
+    print("Element found at index", position)
+else:
+    print("Element not found")
+
+print("Execution Time:", end - start, "seconds")
+print("Time Complexity:")
+print("Best Case: O(1)")
+print("Average Case: O(log n)")
+print("Worst Case: O(log n)")
+print("Space Complexity: O(1)")
