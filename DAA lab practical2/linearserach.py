@@ -1,33 +1,34 @@
 import time
 
-# Function for Linear Search
-def linear_search(arr, key):
-    for i in range(len(arr)):
-        if arr[i] == key:
-            return i
-    return -1
-
-# User Input
-n = int(input("Enter the number of elements: "))
-
+n = int(input("Enter number of elements: "))
 arr = []
-print("Enter the elements:")
+
+print("Enter elements:")
 for i in range(n):
     arr.append(int(input()))
 
-key = int(input("Enter the element to search: "))
+key = int(input("Enter element to search: "))
 
-# Measure execution time
-start_time = time.perf_counter()
+start = time.perf_counter()
 
-result = linear_search(arr, key)
+found = False
 
-end_time = time.perf_counter()
+for i in range(n):
+    if arr[i] == key:
+        found = True
+        position = i
+        break
 
-# Output
-if result != -1:
-    print(f"Element found at index {result}")
+end = time.perf_counter()
+
+if found:
+    print("Element found at index", position)
 else:
     print("Element not found")
 
-print(f"Execution Time: {end_time - start_time:.10f} seconds")
+print("Execution Time:", end - start, "seconds")
+print("Time Complexity:")
+print("Best Case: O(1)")
+print("Average Case: O(n)")
+print("Worst Case: O(n)")
+print("Space Complexity: O(1)")
