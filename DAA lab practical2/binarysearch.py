@@ -1,43 +1,47 @@
+
 import time
 
-# Function for Binary Search
-def binary_search(arr, key):
-    low = 0
-    high = len(arr) - 1
-
-    while low <= high:
-        mid = (low + high) // 2
-
-        if arr[mid] == key:
-            return mid
-        elif arr[mid] < key:
-            low = mid + 1
-        else:
-            high = mid - 1
-
-    return -1
-
-# User Input
-n = int(input("Enter the number of elements: "))
-
-print("Enter the elements in sorted order:")
+n = int(input("Enter number of elements: "))
 arr = []
+
+print("Enter elements:")
 for i in range(n):
     arr.append(int(input()))
 
-key = int(input("Enter the element to search: "))
+arr.sort()
 
-# Measure execution time
-start_time = time.perf_counter()
+key = int(input("Enter element to search: "))
 
-result = binary_search(arr, key)
+start = time.perf_counter()
 
-end_time = time.perf_counter()
+low = 0
+high = n - 1
+found = False
 
-# Output
-if result != -1:
-    print(f"Element found at index {result}")
+while low <= high:
+    mid = (low + high) // 2
+
+    if arr[mid] == key:
+        found = True
+        position = mid
+        break
+    elif arr[mid] < key:
+        low = mid + 1
+    else:
+        high = mid - 1
+
+end = time.perf_counter()
+
+print("Sorted array:", arr)
+
+if found:
+    print("Element found at index", position)
 else:
     print("Element not found")
 
-print(f"Execution Time: {end_time - start_time:.10f} seconds")
+print("Execution Time:", end - start, "seconds")
+print("Time Complexity:")
+print("Best Case: O(1)")
+print("Average Case: O(log n)")
+print("Worst Case: O(log n)")
+print("Space Complexity: O(1)")
